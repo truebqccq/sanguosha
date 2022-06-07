@@ -558,4 +558,33 @@ export default [
         gender: 'M',
         expansion: 'knight11',
     },
+    {
+        name: 'Liu Xie',
+        country: 'Kingdomless',
+        health: 3,
+        gender: 'M',
+        expansion: 'sp11',
+    },
+    {
+        name: 'Sha Mo Ke',
+        country: 'Shu',
+        health: 4,
+        gender: 'M',
+        expansion: 'sp11',
+    },
+    {
+        name: 'Yue Jin',
+        country: 'Wei',
+        health: 4,
+        gender: 'M',
+        expansion: 'sp11',
+    },
+    {
+        name: 'Sun Hao',
+        country: 'Wu',
+        health: 5,
+        gender: 'M',
+        expansion: 'sp11',
+        isMonarch: true,
+    },
 ];
