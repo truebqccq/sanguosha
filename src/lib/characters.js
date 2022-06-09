@@ -342,7 +342,7 @@ export default [
     {
         name: 'Wang Yi',
         country: 'Wei',
-        health: 3,
+        health: 4,
         gender: 'F',
         expansion: 'knight12',
     },
