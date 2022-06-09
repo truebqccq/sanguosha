@@ -9,7 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.audio = new Audio();
-        this.audio.src = './background.mp3';
+        this.audio.src = './bgm.mp3';
         this.audio.volume = 0.1;
         this.audio.loop = true;
         this.audio.play();
