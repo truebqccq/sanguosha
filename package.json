@@ -18,9 +18,8 @@
   "devDependencies": {
     "cross-env": "^7.0.3"
   },
-  "homepage": "https://truebqccq.github.io/sanguosha",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "start": "cross-env REACT_APP_LOCAL=true react-scripts start",
     "build": "react-scripts build",
