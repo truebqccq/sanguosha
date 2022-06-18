@@ -1,5 +1,5 @@
 /node_modules
 .idea/
 build/
-package-lock.json
 github-help.txt
+package-lock.json
