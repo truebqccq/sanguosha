@@ -150,7 +150,7 @@ export default [
     {
         name: 'Lu Bu',
         country: 'Kingdomless',
-        health: 4,
+        health: 5,
         gender: 'M',
     },
     {

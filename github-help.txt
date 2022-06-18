@@ -1,0 +1,21 @@
+Get the latest update from master into the development branch:
+git checkout master
+git pull
+git checkout development
+
+
+New action buttons:
+add in setup.js
+create button in setModePanel.js
+create function in game.js
+
+Auto select:
+game.js line 433
+
+Run test website:
+yarn start
+yarn server, yarn client
+
+Heroku:
+git push heroku [development/master]: pushes selected branch onto heroku website
+heroku ps: check server status
