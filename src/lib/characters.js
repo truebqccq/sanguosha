@@ -150,7 +150,7 @@ export default [
     {
         name: 'Lu Bu',
         country: 'Kingdomless',
-        health: 4,
+        health: 5,
         gender: 'M',
     },
     {
@@ -432,7 +432,7 @@ export default [
     },
     {
         name: 'Cai Wen Ji',
-        country: 'Wei',
+        country: 'Kingdomless',
         health: 3,
         gender: 'F',
         expansion: 'sp11',
