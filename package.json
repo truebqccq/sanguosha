@@ -6,17 +6,21 @@
     "boardgame.io": "^0.42.2",
     "classnames": "^2.2.6",
     "esm": "^3.2.25",
+    "gh-pages": "^4.0.0",
     "koa-static": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "cross-env REACT_APP_LOCAL=true react-scripts start",
     "build": "react-scripts build",
     "client": "cross-env REACT_APP_PROXY=http://localhost:8098 react-scripts start",

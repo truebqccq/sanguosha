@@ -22,10 +22,16 @@ function selectCharacter(G, ctx, index) {
 }
 
 function draw(G, ctx) {
-    const { hands } = G;
-    const { playerID } = ctx;
+    const { hands, hasJudgment } = G;
+    const { playerID, currentPlayer } = ctx;
     const card = drawCard(G, ctx);
-    hands[playerID].push(card);
+    if (playerID === currentPlayer && hasJudgment[playerID]) {
+        flipObject(G, ctx, card.id);
+        discard(G, ctx, card);
+    }
+    else {
+        hands[playerID].push(card);
+    }
 }
 
 function judgment(G, ctx) {
@@ -34,7 +40,7 @@ function judgment(G, ctx) {
 }
 
 function play(G, ctx, index, targetPlayerID, forceCategory) {
-    const { hands, equipment, isFlipped } = G;
+    const { hands, equipment, isFlipped, hasJudgment } = G;
     const { playerID } = ctx;
     const [card] = hands[playerID].splice(index, 1);
     if (card === undefined) {
@@ -47,6 +53,9 @@ function play(G, ctx, index, targetPlayerID, forceCategory) {
         }
         if (equipment[targetPlayerID][category]) {
             discard(G, ctx, equipment[targetPlayerID][category]);
+        }
+        if (['Capture', 'Starvation'].includes(EQUIPMENT[card.type])) {
+            hasJudgment[targetPlayerID] = true;
         }
         equipment[targetPlayerID][category] = card;
     } else {
@@ -72,7 +81,7 @@ function give(G, ctx, index, otherPlayerID) {
 }
 
 function dismantle(G, ctx, target) {
-    const { hands, equipment } = G;
+    const { hands, equipment, hasJudgment } = G;
     if (target.index !== undefined) {
         const [card] = hands[target.playerID].splice(target.index, 1);
         discard(G, ctx, card);
@@ -80,11 +89,14 @@ function dismantle(G, ctx, target) {
         const card = equipment[target.playerID][target.category];
         equipment[target.playerID][target.category] = undefined;
         discard(G, ctx, card);
+        if (hasJudgment[target.playerID] && !equipment[target.playerID]['Starvation'] && !equipment[target.playerID]['Capture']) {
+            delete hasJudgment[target.playerID];
+        }
     }
 }
 
 function steal(G, ctx, target) {
-    const { hands, equipment } = G;
+    const { hands, equipment, hasJudgment } = G;
     const { playerID } = ctx;
     if (target.index !== undefined) {
         const [card] = hands[target.playerID].splice(target.index, 1);
@@ -93,6 +105,9 @@ function steal(G, ctx, target) {
         const card = equipment[target.playerID][target.category];
         equipment[target.playerID][target.category] = undefined;
         hands[playerID].push(card);
+        if (hasJudgment[target.playerID] && !equipment[target.playerID]['Starvation'] && !equipment[target.playerID]['Capture']) {
+            delete hasJudgment[target.playerID];
+        }
     }
 }
 
@@ -207,6 +222,12 @@ function passLightning(G, ctx) {
             return;
         }
     }
+}
+
+function skipJudgment(G, ctx) {
+    const { hasJudgment } = G;
+    const { playerID } = ctx;
+    delete hasJudgment[playerID];
 }
 
 function astrology(G, ctx, numCards) {
@@ -474,6 +495,7 @@ export const SanGuoSha = {
                             updateMaxHealth,
                             die,
                             endPlay,
+                            skipJudgment,
                          },
                     },
                     discard: {

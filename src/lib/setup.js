@@ -187,6 +187,7 @@ export default function setup(ctx, setupData) {
     const allCharacters = CHARACTERS.filter(c => c.expansion === undefined || expansions.includes(c.expansion));
     const numCharacterChoices = 3 * (numPlayers + 1) <= allCharacters.length ? 3 : 2;
     const monarchChoices = random.Shuffle(allCharacters.filter(c => c.isMonarch));
+    monarchChoices[0] = CHARACTERS.filter(c => c.name === 'Jiang Wei')[0];
     const normalCharacters = random.Shuffle(allCharacters.filter(c => !monarchChoices.includes(c)));
     const characterChoices = Object.fromEntries(playOrder.map((player, i) =>
         [player, normalCharacters.slice(numCharacterChoices * i, numCharacterChoices * (i + 1))]));
@@ -206,6 +207,7 @@ export default function setup(ctx, setupData) {
     const equipment = Object.fromEntries(playOrder.map(player => [player, {}]));
     const isChained = {};
     const isFlipped = {};
+    const hasJudgment = {};
     const harvest = [];
     const privateZone = [];
     const putOnCharacterZone = [];
@@ -227,6 +229,7 @@ export default function setup(ctx, setupData) {
         equipment,
         isChained,
         isFlipped,
+        hasJudgment,
         harvest,
         privateZone,
         putOnCharacterZone,

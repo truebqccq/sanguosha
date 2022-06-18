@@ -57,6 +57,7 @@ export default class SetModePanel extends React.Component {
                 {this.renderFinishDiscardButton()}
                 {this.renderSpecialButton()}
                 {this.renderHotkeys()}
+                {this.renderSkipJudgmentButton()}
             </div>
         </div>
     }
@@ -109,6 +110,20 @@ export default class SetModePanel extends React.Component {
             >
                 {'Close'}
             </button>;
+        }
+    }
+
+    renderSkipJudgmentButton() {
+        const { G, moves, playerID, ctx } = this.props;
+        const { hasJudgment } = G;
+        const { currentPlayer } = ctx;
+        if (this.stage() === 'play' && playerID === currentPlayer && hasJudgment[playerID]) {
+            return <button
+                className='clickable'
+                onClick={() => moves.skipJudgment()}
+            >
+                {'Skip Judgment'}
+            </button>
         }
     }
 
