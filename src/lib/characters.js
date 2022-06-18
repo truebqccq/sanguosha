@@ -432,7 +432,7 @@ export default [
     },
     {
         name: 'Cai Wen Ji',
-        country: 'Wei',
+        country: 'Kingdomless',
         health: 3,
         gender: 'F',
         expansion: 'sp11',
