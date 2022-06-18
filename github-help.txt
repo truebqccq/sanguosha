@@ -3,6 +3,16 @@ git checkout master
 git pull
 git checkout development
 
+# download the latest commits
+git remote update -p
+
+# update the local branch
+git merge --ff-only @{u}
+
+# if the above fails with a complaint that the local branch has
+# diverged:
+git rebase -p @{u}
+
 
 New action buttons:
 add in setup.js
