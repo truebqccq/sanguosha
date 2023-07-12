@@ -187,7 +187,9 @@ export default function setup(ctx, setupData) {
     const allCharacters = CHARACTERS.filter(c => c.expansion === undefined || expansions.includes(c.expansion));
     const numCharacterChoices = 3 * (numPlayers + 1) <= allCharacters.length ? 3 : 2;
     const monarchChoices = random.Shuffle(allCharacters.filter(c => c.isMonarch));
-    monarchChoices[0] = CHARACTERS.filter(c => c.name === 'Jiang Wei')[0];
+    // monarchChoices[0] = CHARACTERS.filter(c => c.name === 'Zhang Chun Hua')[0];
+    // monarchChoices[1] = CHARACTERS.filter(c => c.name === 'Xiahou Dun')[0];
+    // monarchChoices[2] = CHARACTERS.filter(c => c.name === 'Lu Bu')[0];
     const normalCharacters = random.Shuffle(allCharacters.filter(c => !monarchChoices.includes(c)));
     const characterChoices = Object.fromEntries(playOrder.map((player, i) =>
         [player, normalCharacters.slice(numCharacterChoices * i, numCharacterChoices * (i + 1))]));
