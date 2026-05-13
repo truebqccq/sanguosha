@@ -38,29 +38,29 @@ img {
 }
 
 .decrease-health {
-    background-image: url('/health/health-red.png');
+    background-image: url('./imgs/health-red.png');
     background-size: cover;
 }
 
 .increase-health {
-    background-image: url('/health/health-green.png');
+    background-image: url('./imgs/health-green.png');
     background-size: cover;
 }
 
 .decrease-max-health {
-    background-image: url('/health/health-minus.png');
+    background-image: url('./imgs/health-minus.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .increase-max-health {
-    background-image: url('/health/health-plus.png');
+    background-image: url('./imgs/health-plus.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .chain {
-    background-image: url('/chain.png');
+    background-image: url('./imgs/chain.png');
     background-size: cover;
 }
 

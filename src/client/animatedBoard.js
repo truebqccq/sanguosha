@@ -1,6 +1,6 @@
 import * as classNames from 'classnames';
 import React from 'react';
-import { animated, interpolate } from 'react-spring';
+import { animated, to } from 'react-spring';
 import AnimatedItems from './animatedItems';
 import './animatedBoard.css';
 
@@ -32,10 +32,10 @@ export default class AnimatedBoard extends React.Component {
                     const { faceUp, opacity, left, top } = props;
                     return <animated.img
                         className='positioned item shadow'
-                        src={faceUp.interpolate(faceUp => faceUp > 0.5 ? `./characters/${item.name}.jpg` : './characters/Character Back.jpg')}
+                        src={faceUp.to(faceUp => faceUp > 0.5 ? process.env.PUBLIC_URL+`/characters/${item.name}.jpg` : './characters/Character Back.jpg')}
                         alt={item.name}
                         style={{
-                            transform: faceUp.interpolate(faceUp => `rotateY(${faceUp * 180 - (faceUp > 0.5 ? 180 : 0)}deg)`),
+                            transform: faceUp.to(faceUp => `rotateY(${faceUp * 180 - (faceUp > 0.5 ? 180 : 0)}deg)`),
                             opacity,
                             left,
                             top,
@@ -51,7 +51,7 @@ export default class AnimatedBoard extends React.Component {
                 animated={(item, props) => <animated.img
                     key={item.key}
                     className='positioned item'
-                    src={`./health/health-${item.color}.png`}
+                    src={process.env.PUBLIC_URL+`/health/health-${item.color}.png`}
                     alt='health'
                     style={{
                         opacity: props.opacity,
@@ -82,7 +82,7 @@ export default class AnimatedBoard extends React.Component {
                         className='positioned'
                         style={{
                             transformOrigin: '0 0',
-                            transform: interpolate([sideways, scale], (sideways, scale) => `scale(${scale}) rotateZ(${sideways * 90}deg)`),
+                            transform: to([sideways, scale], (sideways, scale) => `scale(${scale}) rotateZ(${sideways * 90}deg)`),
                             opacity,
                             left,
                             top,
@@ -93,7 +93,7 @@ export default class AnimatedBoard extends React.Component {
                         <animated.div
                             className={classNames('positioned', 'item', item?.className)}
                             style={{
-                                transform: faceUp?.interpolate(faceUp => `rotateY(${faceUp * 180 - (faceUp > 0.5 ? 180 : 0)}deg)`),
+                                transform: faceUp?.to(faceUp => `rotateY(${faceUp * 180 - (faceUp > 0.5 ? 180 : 0)}deg)`),
                                 left: 0,
                                 top: 0,
                                 width: '100%',
@@ -102,7 +102,7 @@ export default class AnimatedBoard extends React.Component {
                         >
                             <animated.img
                                 className='fill'
-                                src={faceUp.interpolate(faceUp => faceUp > 0.5 ? `./cards/${item.card.type}.jpg` : './cards/Card Back.jpg')}
+                                src={faceUp.to(faceUp => faceUp > 0.5 ? process.env.PUBLIC_URL+`/cards/${item.card.type}.jpg` : process.env.PUBLIC_URL+'/cards/Card Back.jpg')}
                                 alt={'card'}
                             />
                             <animated.div

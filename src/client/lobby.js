@@ -105,7 +105,7 @@ export default class SanGuoShaLobby extends React.Component {
         }
         return <div className='lobby'>
             <div className='title'>
-                <img src='./name.png' alt='sanguosha' />
+                <img src={process.env.PUBLIC_URL+'./name.png'} alt='sanguosha' />
             </div>
             <div id="lobby-view">{this.renderLobby()}</div>
         </div>;
