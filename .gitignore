@@ -6,3 +6,4 @@ github-help.txt
 package-lock.json
 old_package-lock.json
 /assets
+/.vscode
