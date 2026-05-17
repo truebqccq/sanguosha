@@ -88,13 +88,16 @@ img {
     color: black;
 }
 
-.help-panel > img {
+.help-panel-img {
+    position: relative;
     height: 100%;
+    width: 21.25vh;
     float: left;
     margin-right: 3px;
+    padding: 0px;
 }
 
-.help-panel > div {
+.help-panel-div {
     padding: 20px;
     height: calc(100% - 40px);
     overflow: auto;

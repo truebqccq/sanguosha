@@ -418,8 +418,8 @@ export const SanGuoSha = {
                         }
                     });
 
-                    // make character choices automatically for easier testing
-                    // playOrder.forEach(player => selectCharacter(G, { ...ctx, playerID: player }, 0));
+                    // TEST: make character choices automatically for easier testing
+                    playOrder.forEach(player => selectCharacter({G, ctx, playerID: player }, 0));
                 },
                 stages: {
                     selectCharacter: {
