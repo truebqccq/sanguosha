@@ -175,3 +175,19 @@ button.selectable:active {
 button.disabled {
     background-color: gray;
 }
+
+.card-mode {
+    background-size: cover;
+    position: fixed;
+    bottom: 40px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.card-mode.cycle {
+    background-image: url('./imgs/card-mode.png');
+}
+

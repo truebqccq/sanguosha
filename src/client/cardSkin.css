@@ -19,21 +19,6 @@
     color: rgb(0, 0, 0);
 }
 
-.card-mode {
-    background-size: cover;
-    position: fixed;
-    bottom: 5px;
-    left: 40px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    background-color: lightgray;
-}
-
-.card-mode.cycle {
-    background-image: url('./imgs/card-mode.png');
-}
-
 .fill {
     position: absolute;
     width: 100%;
