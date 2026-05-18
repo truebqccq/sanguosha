@@ -828,15 +828,15 @@ export default class GameArea extends React.Component {
         var imgDiv
         if (mode === SetModePanel.HELP_MODE && helpCard !== undefined) {
             if (helpCard.src !== undefined) {
-                imgDiv = <img src={helpCard.src} alt='card' />;
+                imgDiv = <img className='help-panel-img' src={helpCard.src} alt='card' />;
             }
             else {
-                imgDiv=this.state.cardMode==='sgs' ? createSgsCard(helpCard.card) : createStsCard(helpCard.card);
+                imgDiv= <div className='help-panel-card'>{this.state.cardMode==='sgs' ? createSgsCard(helpCard.card) : createStsCard(helpCard.card)}</div>;
             }
             return <div
                 className='help-panel'
             >
-                <div className='help-panel-img' >{imgDiv}</div>
+                {imgDiv}
                 <div className='help-panel-div' dangerouslySetInnerHTML={{ __html: RULES[helpCard.key] }} />
                 <button
                     className='selectable bad'

@@ -5,6 +5,10 @@
 import CHARACTERS from './characters.js';
 import { ROLE_DIST, ROLE_DIST_LABELS } from './roles.js';
 
+const BANLIST = [
+    'Yu Ji', // Guessing card guy
+];
+
 const CARDS = [
     { value: 'A', suit: 'CLUB', type: 'Crossbow' },
     { value: 'A', suit: 'CLUB', type: 'Duel' },
@@ -184,7 +188,7 @@ export default function setup({random, ctx}, setupData) {
     }
     const startPlayerIndex = roles.findIndex(role => role.name === 'King');
 
-    const allCharacters = CHARACTERS.filter(c => c.expansion === undefined || expansions.includes(c.expansion));
+    const allCharacters = CHARACTERS.filter(c => (c.expansion === undefined || expansions.includes(c.expansion)) && !BANLIST.includes(c.name));
     const numCharacterChoices = 3 * (numPlayers + 1) <= allCharacters.length ? 3 : 2;
     const monarchChoices = random.Shuffle(allCharacters.filter(c => c.isMonarch));
     // monarchChoices[0] = CHARACTERS.filter(c => c.name === 'Lu Su')[0];
