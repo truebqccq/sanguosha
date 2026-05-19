@@ -213,7 +213,7 @@ export default class SanGuoShaLobby extends React.Component {
                     <button
                         key="watch"
                         onClick={() => this.leaveMatch()
-                            .then(() => this.setState({ matchInfo: { matchID: matchID, playerID: '-1', }, inGame: true }))}
+                            .then(() => this.setState({ matchInfo: { matchID: matchID, }, inGame: true }))}
                     >
                         {'Watch'}
                     </button>

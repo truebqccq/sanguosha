@@ -112,7 +112,7 @@ function toggleChain({G, ctx, playerID}) {
     isChained[playerID] = !isChained[playerID];
 }
 
-function flipObject({G, _ctx}, objectID) {
+function flipObject({G}, objectID) {
     const { isFlipped } = G;
     isFlipped[objectID] = !isFlipped[objectID];
 }
@@ -130,7 +130,7 @@ function reveal({G, ctx, playerID}, index, otherPlayerID) {
     });
 }
 
-function returnCard({G, _ctx, id}) {
+function returnCard({G, id}) {
     const { deck, hands, privateZone } = G;
     const index = privateZone.findIndex(item => item.card.id === id);
     const [{ card, source }] = privateZone.splice(index, 1);
@@ -271,7 +271,7 @@ function refusingDeath({G, ctx, random, playerID}, change) {
     }
 }
 
-function alliance({G, _ctx}, player1, player2) {
+function alliance({G}, player1, player2) {
     const { hands } = G;
     const temp = hands[player1];
     hands[player1] = hands[player2];
@@ -314,18 +314,18 @@ function updateMaxHealth({G, ctx, playerID}, change) {
     }
 }
 
-function die({G, ctx, playerID}) {
+function die({G, ctx, events, playerID}) {
     const { isAlive } = G;
-    const { currentPlayer, events } = ctx;
+    const { currentPlayer } = ctx;
     delete isAlive[playerID];
     if (currentPlayer === playerID) {
         events.endTurn();
     }
 }
 
-function endPlay({G, ctx, playerID}) {
+function endPlay({G, ctx, events, playerID}) {
     const { healths, hands } = G;
-    const { currentPlayer, events } = ctx;
+    const { currentPlayer } = ctx;
     if (currentPlayer === playerID) {
         events.setStage('discard');
         if (hands[playerID].length <= healths[playerID].current) {
@@ -334,9 +334,8 @@ function endPlay({G, ctx, playerID}) {
     }
 }
 
-function discardCard({G, ctx, playerID}, index) {
+function discardCard({G, ctx, events, playerID}, index) {
     const { healths, hands } = G;
-    const { events } = ctx;
     const [card] = hands[playerID].splice(index, 1);
     if (card === undefined) {
         return;
@@ -347,8 +346,8 @@ function discardCard({G, ctx, playerID}, index) {
     }
 }
 
-function finishDiscard({_G, ctx}) {
-    const { currentPlayer, events, playerID } = ctx;
+function finishDiscard({events, ctx, playerID}) {
+    const { currentPlayer } = ctx;
     if (currentPlayer === playerID) {
         events.endTurn();
     }
@@ -419,7 +418,7 @@ export const SanGuoSha = {
                     });
 
                     // DEBUG: make character choices automatically for easier testing
-                    // playOrder.forEach(player => selectCharacter({G, ctx, playerID: player }, 0));
+                    playOrder.forEach(player => selectCharacter({G, ctx, playerID: player }, 0));
                 },
                 stages: {
                     selectCharacter: {
