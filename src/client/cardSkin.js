@@ -24,8 +24,17 @@ export function createSgsCard(card) {
     </div>
 }
 
+function substituteName(text) {
+    const matches = [...text.matchAll(/@(.+?)@/g)];
+    for (const match of matches) {
+        text.replace(match[0], STSMAP[match[1]].name);
+    }
+    return text;
+}
+
 export function createStsCard(card) {
     const { cat, rarity, color, name, desc } = STSMAP[card.type];
+    desc = substituteName(desc);
     return <div>
         <animated.img
             className='sts-component'
