@@ -26,15 +26,14 @@ export function createSgsCard(card) {
 
 function substituteName(text) {
     const matches = [...text.matchAll(/@(.+?)@/g)];
-    for (const match of matches) {
-        text.replace(match[0], STSMAP[match[1]].name);
+    for (let match of matches) {
+        text = text.replace(match[0], STSMAP[match[1]].name);
     }
     return text;
 }
 
 export function createStsCard(card) {
     const { cat, rarity, color, name, desc } = STSMAP[card.type];
-    desc = substituteName(desc);
     return <div>
         <animated.img
             className='sts-component'
@@ -67,7 +66,7 @@ export function createStsCard(card) {
         <svg className="desc-frame" width="100%" height="100%" viewBox="0 0 165 115" xmlns="http://www.w3.org/2000/svg">
             <foreignObject x="0" y="0" width="165" height="115">
                 <span className={'sts-text desc'}>
-                    {desc}</span>
+                    {substituteName(desc)}</span>
             </foreignObject>
         </svg>
     </div>
